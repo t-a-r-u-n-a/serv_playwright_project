@@ -14,7 +14,7 @@ export class SearchResultsPage {
     const productResults = this.page.locator('.search-results-loop');
     const productSelector = this.page.locator(`.search-results-loop>div:nth-child(${productIndex})`);
     const productName = await this.page.textContent(`.search-results-loop>div:nth-child(${productIndex})> div:nth-child(3) > a:nth-child(1) > div:nth-child(2) > div:nth-child(2)`);
-    const productPrice = await this.page.textContent(`.search-results-loop > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(1)`);
+    const productPrice = await this.page.textContent(`.search-results-loop > div:nth-child(${productIndex}) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(1)`);
     const productCardContent = this.page.locator(`.search-results-loop> div:nth-child(${productIndex}) > div:nth-child(3)`);
     const productAddToCart = `.search-results-loop> div:nth-child(${productIndex}) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button:nth-child(1)`;
     const productAdded = this.page.locator(`.search-results-loop> div:nth-child(${productIndex}) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button:nth-child(1)> span:nth-child(2)`);
@@ -28,8 +28,8 @@ export class SearchResultsPage {
     await this.page.keyboard.press("Enter");
     await expect(productAdded).toHaveText('Added!');
     //console.log("Clicked:", productAddToCart);
-    //console.log("Product is:", productName);
-    //console.log("Price is:", productPrice);
+    console.log("Product is:", productName);
+    console.log("Price is:", productPrice);
 
     //Return product name and price
     return { name: productName.trim(), price: productPrice.trim() };

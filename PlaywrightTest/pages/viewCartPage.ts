@@ -14,6 +14,7 @@ export class ViewCartPage {
 
         const dropdownSuggestions = this.page.locator('section.suggestions');
         const dropdownValue = `section.suggestions>div>ul>li>button`;
+        const dropdownValueText = this.page.textContent('section.suggestions>div>ul>li>button');
                
         //Click on Check Availailibility button       
         await checkAvailabilityButton.scrollIntoViewIfNeeded();
@@ -28,8 +29,8 @@ export class ViewCartPage {
         //Select suburb from dropdown
         await this.page.waitForTimeout(4000);
         await this.page.click(dropdownValue);
-        await this.page.waitForTimeout(10000);
-               
+        await this.page.waitForTimeout(40000);
+         
     }
 
     async assertDeliveryOptions() {
