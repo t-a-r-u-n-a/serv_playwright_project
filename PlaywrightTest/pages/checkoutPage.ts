@@ -11,7 +11,6 @@ export class CheckoutPage {
   readonly contactLastNameInput: string;
   readonly contactPhoneInput: string;
   readonly contactAddressInput: string;
-  //readonly continueToPaymentButton: string;
   readonly productNameLocator: string;
   readonly productPriceLocator: string;
   readonly productSubtotalLocator: string;
@@ -21,7 +20,6 @@ export class CheckoutPage {
     this.emailInput = 'input#email';
     this.deliveryMethodRadio = '#delivery_strategies>div>div:nth-child(2)>div>div>input';
     
-    //const deliveryOption = this.page.locator('#delivery_strategies>div>div:nth-child(2)>div>div:nth-child(2)>label>div>p');
     this.storeSelect = '#local_pickup_methods>div>div:nth-child(1)>div>div:nth-child(1)>input';
     this.unavailableTVs = '.cart-item.unavailable';
     this.contactFirstNameInput = '[name=firstName]';

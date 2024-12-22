@@ -22,17 +22,11 @@ export class CartPage {
       await this.page.click('.cart-buttons-checkout');
     }  
 
-    async getSubtotal(): Promise<number> {
-      const subtotal = parseFloat(
-        (await this.page.textContent('span.cart-price-total'))!.replace(/[^0-9.]/g, '')
-      );
-        return subtotal;
-    }
-        
     async assertProductInCart(productIndex: number, product: { name: string | null; price: string | null }) {
       
       //Assert the added TV products’ name and price
-      const productInCart = await this.page.textContent(`.cart-mini__content>[data-index="${productIndex}"]>div:nth-child(2)>div>div:nth-child(1)>div>h6>a`);
+      const itemNumber = productIndex-1; 
+      const productInCart = await this.page.textContent(`.cart-mini__content>[data-index="${itemNumber}"]>div:nth-child(2)>div>div:nth-child(1)>div>h6>a`);
       
       console.log("Product is:", productInCart);
       expect(productInCart?.trim()).toBe(product.name);
@@ -64,6 +58,11 @@ export class CartPage {
       await quantityButton.waitFor();
       await quantityButton.click();
       await this.page.waitForTimeout(5000);
+      const subtotal = parseFloat(
+        (await this.page.textContent('span.cart-price-total'))!.replace(/[^0-9.]/g, '')
+      );
+      console.log ("sub total on cart:", subtotal);
+      return subtotal;
       }
         
   }

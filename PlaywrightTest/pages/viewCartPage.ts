@@ -13,23 +13,22 @@ export class ViewCartPage {
         const locationSearch = this.page.locator('input[name="location-search"]');
 
         const dropdownSuggestions = this.page.locator('section.suggestions');
-        const dropdownValue = `section.suggestions>div>ul>li>button`;
+        const dropdownValue = this.page.locator('section.suggestions>div>ul>li>button');
         const dropdownValueText = this.page.textContent('section.suggestions>div>ul>li>button');
                
         //Click on Check Availailibility button       
-        await checkAvailabilityButton.scrollIntoViewIfNeeded();
         await checkAvailabilityButton.focus();
         await this.page.keyboard.press("Enter");
+        await this.page.waitForTimeout(5000);
         
         //Enter postcode in location search field
-        await locationSearch.waitFor();
         await locationSearch.click();
-        await locationSearch.fill(postcode);
+        await locationSearch.fill(location);
 
         //Select suburb from dropdown
-        await this.page.waitForTimeout(4000);
-        await this.page.click(dropdownValue);
-        await this.page.waitForTimeout(40000);
+        await this.page.waitForTimeout(5000);
+        await this.page.keyboard.press("Enter");
+        await this.page.waitForTimeout(10000);
          
     }
 
